@@ -1,5 +1,5 @@
 const value = document.querySelector('.display');
-let count=0, dotCount=0, negCount=0;
+let count=0, dotCount=0, negCount=0, result=0;
 
 class Stack{
     constructor(){
@@ -10,10 +10,8 @@ class Stack{
         this.items.push(ele);
     }
 
-    remove(){
-        if(this.items.length>0){
-            return this.items.pop();
-        }
+    pop(){
+        return this.items.pop();
     }
 
     isEmpty(){
@@ -50,6 +48,7 @@ function calculation(selection){
         count=0;
         dotCount=0;
         negCount=0;
+        stack.clear();
     }
     else if(selection.match(/^\d$/g)){
         if (count==0 || value.innerHTML=='0'){
@@ -67,25 +66,44 @@ function calculation(selection){
         }
     }
     else if(selection=='+/-'){
-        value.innerHTML=='0' ? console.log('lol') : negCount<=0 ? NaN : value.innerHTML=`${'-'}${value.innerHTML}`, negCount++,console.log(negCount);
+        value.innerHTML=='0' ? console.log('lol') : value.innerHTML=`${'-'}${value.innerHTML}`, negCount++,console.log(negCount);
     }
     else if(selection.match(/^\+|\-|\x|\/|\=$/g)){
         switch(selection) {
             case '+':
-                add();
-            case '-':
-                sub();
-            case 'x':
-                multiply();
-            case '/':
-                division();
-            case '=':
-                equal();
-            default:
-                console.log('check');
+                addition(selection);
+                console.log('add');
+            // case '-':
+            //     sub();
+            // case 'x':
+            //     multiply();
+            // case '/':
+            //     division();
+            // case '=':
+            //     equal();
+            // default:
+            //     console.log('check');
         }
     }
     else{
         value.innerHTML='NaN'
     }
+}
+
+function addition(selection){
+    if(stack.size()==0){
+        stack.add(value.innerHTML);
+        stack.add(selection);
+        count=0;
+    }
+    else if(stack.peek().match(/^\+|\-|\x|\/$/g)){
+        stack.pop();
+        result = parseFloat(stack.pop())+parseFloat(value.innerHTML);
+        stack.add(result.toString());
+        stack.add(selection);
+        value.innerHTML= result;
+        count=0;
+        console.log(result);
+    }
+    console.log(stack.items);
 }
