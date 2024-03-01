@@ -44,7 +44,48 @@ buttonsAll.forEach((buttons)=>{
     });
 })
 
-
-
-
-
+function calculation(selection){
+    if (selection=='AC'){
+        value.innerHTML='0';
+        count=0;
+        dotCount=0;
+        negCount=0;
+    }
+    else if(selection.match(/^\d$/g)){
+        if (count==0 || value.innerHTML=='0'){
+            value.innerHTML=selection;
+            count++;
+        }
+        else{
+            value.innerHTML+=selection;
+        }
+    }
+    else if(selection=='.'){
+        if(dotCount==0){
+            value.innerHTML+=selection;
+            dotCount++;
+        }
+    }
+    else if(selection=='+/-'){
+        value.innerHTML=='0' ? console.log('lol') : negCount<=0 ? NaN : value.innerHTML=`${'-'}${value.innerHTML}`, negCount++,console.log(negCount);
+    }
+    else if(selection.match(/^\+|\-|\x|\/|\=$/g)){
+        switch(selection) {
+            case '+':
+                add();
+            case '-':
+                sub();
+            case 'x':
+                multiply();
+            case '/':
+                division();
+            case '=':
+                equal();
+            default:
+                console.log('check');
+        }
+    }
+    else{
+        value.innerHTML='NaN'
+    }
+}
