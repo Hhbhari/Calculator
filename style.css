@@ -14,19 +14,20 @@ body{
 }
 
 .display{
-    width: 50vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 30vw;
     padding: 10px;
     border-radius: 50px;
     border-style: none;
-    background-color: rgb(185, 195, 199, 50%);
-    text-align: right;
-    
+    background-color: rgb(185, 195, 199, 50%);   
 }
 
 .btn-container{
     display: flex;
     flex-wrap: wrap;
-    width: 50vw;
+    width: 30vw;
     margin: 0%;
     padding: 10px;
     gap: 5px;
