@@ -21,7 +21,12 @@ body{
     padding: 10px;
     border-radius: 50px;
     border-style: none;
-    background-color: rgb(185, 195, 199, 50%);   
+    background-color: rgba(41, 46, 48, 0.5); 
+    cursor: pointer;
+    
+    &:hover{
+    background-color: rgba(41, 46, 48, 0.7); 
+    }
 }
 
 .btn-container{
@@ -43,8 +48,13 @@ body{
     align-items: center;
     border-radius: 50px;
     border-style: none;
+    cursor: pointer;
     background-color: rgba(41, 46, 48, 0.5);
     color: rgb(255, 255, 255);
+
+    &:hover{
+        background-color: rgba(41, 46, 48, 0.7); 
+    }
 }
 
 .equal, .dot{
@@ -52,5 +62,16 @@ body{
 }
 
 .operator{
-    background-color: rgb(240, 155, 45);
+    background-color: rgba(255, 164, 45);
+
+    &:hover{
+        background-color: rgba(255, 164, 45);
+    }
+}
+
+.reset, .negative, .percentage{
+    background-color: rgba(178, 188, 192, 0.5);
+    &:hover{
+        background-color: rgba(178, 188, 192, 0.7);
+    }
 }
