@@ -114,7 +114,7 @@ function calculation(selection){
                     console.log('multiply');
                     break;
                 case '=':
-                    equal();
+                    equal(selection);
                     console.log('equal');
                     break;
                 // default:
@@ -171,9 +171,11 @@ function division(selection){
     console.log(stack.items);
 }
 
-function equal(){
+function equal(selection){
     if(stack.size()==2){
         stack.items[0]=value.innerHTML;
+        stack.pop()
+        stack.add(selection);
         count=0;
         console.log(stack.items);
     }
