@@ -88,8 +88,10 @@ function calculation(selection){
                     addition(selection);
                     console.log('add');
                     break;
-                // case '-':
-                //     sub();
+                case '-':
+                    sub(selection);
+                    console.log('sub');
+                    break;
                 // case 'x':
                 //     multiply();
                 // case '/':
@@ -109,6 +111,17 @@ function calculation(selection){
 function addition(selection){
     stack.pop();
     result = parseFloat(stack.pop())+parseFloat(value.innerHTML);
+    stack.add(result.toString());
+    stack.add(selection);
+    value.innerHTML= result;
+    count=0;
+    console.log(result);
+    console.log(stack.items);
+}
+
+function sub(selection){
+    stack.pop();
+    result = parseFloat(stack.pop())-parseFloat(value.innerHTML);
     stack.add(result.toString());
     stack.add(selection);
     value.innerHTML= result;
