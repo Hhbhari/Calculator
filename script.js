@@ -69,20 +69,36 @@ function calculation(selection){
         value.innerHTML=='0' ? console.log('lol') : value.innerHTML=`${'-'}${value.innerHTML}`, negCount++,console.log(negCount);
     }
     else if(selection.match(/^\+|\-|\x|\/|\=$/g)){
-        switch(selection) {
-            case '+':
-                addition(selection);
-                console.log('add');
-            // case '-':
-            //     sub();
-            // case 'x':
-            //     multiply();
-            // case '/':
-            //     division();
-            // case '=':
-            //     equal();
-            // default:
-            //     console.log('check');
+        if(stack.size()==0){
+            stack.add(value.innerHTML);
+            stack.add(selection);
+            count=0;
+            console.log(stack.items);
+
+        }
+        else if(stack.peek().match(/^\+|\-|\x|\/$/g) && count==0){
+            stack.pop();
+            stack.add(selection);
+            console.log(stack.items);
+
+        }
+        else{
+            switch(stack.peek()) {
+                case '+':
+                    addition(selection);
+                    console.log('add');
+                    break;
+                // case '-':
+                //     sub();
+                // case 'x':
+                //     multiply();
+                // case '/':
+                //     division();
+                // case '=':
+                //     equal();
+                // default:
+                //     console.log('check');
+            }
         }
     }
     else{
@@ -91,19 +107,12 @@ function calculation(selection){
 }
 
 function addition(selection){
-    if(stack.size()==0){
-        stack.add(value.innerHTML);
-        stack.add(selection);
-        count=0;
-    }
-    else if(stack.peek().match(/^\+|\-|\x|\/$/g)){
-        stack.pop();
-        result = parseFloat(stack.pop())+parseFloat(value.innerHTML);
-        stack.add(result.toString());
-        stack.add(selection);
-        value.innerHTML= result;
-        count=0;
-        console.log(result);
-    }
+    stack.pop();
+    result = parseFloat(stack.pop())+parseFloat(value.innerHTML);
+    stack.add(result.toString());
+    stack.add(selection);
+    value.innerHTML= result;
+    count=0;
+    console.log(result);
     console.log(stack.items);
 }
