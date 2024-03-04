@@ -76,7 +76,7 @@ function calculation(selection){
             console.log(stack.items);
 
         }
-        else if(stack.peek().match(/^\+|\-|\x|\/$/g) && count==0){
+        else if(stack.peek().match(/^\+|\-|\x|\/|\=$/g) && count==0){
             stack.pop();
             stack.add(selection);
             console.log(stack.items);
@@ -100,8 +100,10 @@ function calculation(selection){
                     division(selection);
                     console.log('multiply');
                     break;
-                // case '=':
-                //     equal();
+                case '=':
+                    equal();
+                    console.log('equal');
+                    break;
                 // default:
                 //     console.log('check');
             }
@@ -154,4 +156,12 @@ function division(selection){
     count=0;
     console.log(result);
     console.log(stack.items);
+}
+
+function equal(){
+    if(stack.size()==2){
+        stack.items[0]=value.innerHTML;
+        count=0;
+        console.log(stack.items);
+    }
 }
