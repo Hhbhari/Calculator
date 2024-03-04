@@ -92,8 +92,10 @@ function calculation(selection){
                     sub(selection);
                     console.log('sub');
                     break;
-                // case 'x':
-                //     multiply();
+                case 'x':
+                    multiply(selection);
+                    console.log('multiply');
+                    break;
                 // case '/':
                 //     division();
                 // case '=':
@@ -122,6 +124,17 @@ function addition(selection){
 function sub(selection){
     stack.pop();
     result = parseFloat(stack.pop())-parseFloat(value.innerHTML);
+    stack.add(result.toString());
+    stack.add(selection);
+    value.innerHTML= result;
+    count=0;
+    console.log(result);
+    console.log(stack.items);
+}
+
+function multiply(selection){
+    stack.pop();
+    result = parseFloat(stack.pop())*parseFloat(value.innerHTML);
     stack.add(result.toString());
     stack.add(selection);
     value.innerHTML= result;
