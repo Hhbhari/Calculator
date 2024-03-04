@@ -60,13 +60,26 @@ function calculation(selection){
         }
     }
     else if(selection=='.'){
-        if(dotCount==0){
+        if(parseFloat(value.innerHTML)%1==0 ){
             value.innerHTML+=selection;
-            dotCount++;
+            count++;
         }
     }
     else if(selection=='+/-'){
         value.innerHTML=='0' ? console.log('lol') : value.innerHTML=`${'-'}${value.innerHTML}`, negCount++,console.log(negCount);
+    }
+    else if(selection=='%'){
+        if(stack.size()==0 || stack.size()==1){
+            value.innerHTML=0;
+            count=0;
+        }
+        else if(stack.peek()=='x' || stack.peek()=='/'){
+            value.innerHTML/=100;
+        }
+        else if(stack.peek()=='+' || stack.peek()=='-'){
+            value.innerHTML = (stack.items[0]*value.innerHTML)/100;
+        }
+
     }
     else if(selection.match(/^\+|\-|\x|\/|\=$/g)){
         if(stack.size()==0){
