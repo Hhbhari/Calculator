@@ -42,6 +42,34 @@ buttonsAll.forEach((buttons)=>{
     });
 })
 
+document.addEventListener('keydown', (event)=>{
+    let keyValue=event.key;
+    console.log(keyValue);
+
+    if(keyValue=='*'){
+        calculation('x');
+    }
+    else if(keyValue=='Escape'){
+        calculation('AC');
+    }
+    else if(keyValue=='Enter'){
+        calculation('=');
+    }
+    else if(keyValue.match(/^\+|\-|\/|\%|\.$/g)){
+        calculation(keyValue);
+    }
+    else if(keyValue.match(/^\d$/g)){
+        calculation(keyValue);
+    }
+    else if(keyValue=='Backspace'){
+        console.log(value.innerHTML.length);
+        value.innerHTML = value.innerHTML.length==1? '0' : value.innerHTML.split('').slice(0,value.innerHTML.length-1).join('');
+    }
+    else{
+        
+    }
+},false);
+
 function calculation(selection){
     if (selection=='AC'){
         value.innerHTML='0';
