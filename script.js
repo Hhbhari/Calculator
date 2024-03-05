@@ -34,10 +34,24 @@ class Stack{
 let stack = new Stack();
 
 
-const buttonsAll = document.querySelectorAll('button')
+const buttonsAll = document.querySelectorAll('button');
 
 buttonsAll.forEach((buttons)=>{
     buttons.addEventListener('click',()=>{
+        if(buttons.innerHTML.match(/^\+|\-|\x|\/|\=$/g) && buttons.innerHTML!='+/-'){
+            if(negCount!='0'){
+                console.log('yes');
+                negCount.classList.remove('present');
+            }
+            negCount=buttons;
+            negCount.classList.add('present');
+        }
+        else if(negCount==0){
+            console.log('Go on');
+        }
+        else{
+            negCount.classList.remove('present');
+        }
         calculation(buttons.innerHTML);
     });
 })
@@ -45,6 +59,24 @@ buttonsAll.forEach((buttons)=>{
 document.addEventListener('keydown', (event)=>{
     let keyValue=event.key;
     console.log(keyValue);
+    // let currentButton = [...buttonsAll].filter(buttons=>buttons.innerHTML==keyValue);
+    // if(currentButton.length!==0){
+    //     if(currentButton[0].innerHTML.match(/^\+|\-|\*|\/|\=$/g) && currentButton[0].innerHTML!='+/-'){
+    //         if(negCount!='0'){
+    //             console.log('yes');
+    //             negCount.classList.remove('present');
+    //         }
+    //         negCount=currentButton[0];
+    //         negCount.classList.add('present');
+    //     }
+    //     else if(negCount==0){
+    //         console.log('Go on');
+    //     }
+    //     else{
+    //         negCount.classList.remove('present');
+    //     }
+    // }
+    // console.log(keyValue);
 
     if(keyValue=='*'){
         calculation('x');

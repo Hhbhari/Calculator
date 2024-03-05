@@ -51,10 +51,6 @@ body{
     cursor: pointer;
     background-color: rgba(41, 46, 48, 0.5);
     color: rgb(255, 255, 255);
-
-    &:hover{
-        background-color: rgba(41, 46, 48, 0.7); 
-    }
 }
 
 .equal, .dot{
@@ -63,10 +59,6 @@ body{
 
 .operator{
     background-color: rgba(255, 164, 45);
-
-    &:hover{
-        background-color: rgba(255, 164, 45);
-    }
 }
 
 .reset, .negative, .percentage{
@@ -74,4 +66,15 @@ body{
     &:hover{
         background-color: rgba(178, 188, 192, 0.7);
     }
+}
+
+.number, .dot{
+    &:hover{
+        background-color: rgba(41, 46, 48, 0.7); 
+    }
+}
+
+.present{
+    background-color: white;
+    color: rgba(255, 164, 45);
 }
