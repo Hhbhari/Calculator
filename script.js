@@ -94,10 +94,10 @@ function calculation(selection){
         }
     }
     else if(selection=='+/-'){
-        value.innerHTML=='0' ? console.log('lol') : value.innerHTML=`${'-'}${value.innerHTML}`, negCount++,console.log(negCount);
+        value.innerHTML=='0' ? console.log('lol') : value.innerHTML<0 ? console.log('Nope') : value.innerHTML=`${'-'}${value.innerHTML}`;
     }
     else if(selection=='%'){
-        if(stack.size()==0 || stack.size()==1){
+        if(stack.size()==0 || stack.size()==1 || stack.peek()=='='){
             value.innerHTML=0;
             count=0;
         }
@@ -191,6 +191,9 @@ function multiply(selection){
 function division(selection){
     stack.pop();
     result = parseFloat(stack.pop())/parseFloat(value.innerHTML);
+    if(result=='Infinity'){
+        result='Cannot Divide by Zero';
+    }
     stack.add(result.toString());
     stack.add(selection);
     value.innerHTML= result;
