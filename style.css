@@ -11,6 +11,9 @@ body{
 .container{
     display: flex;
     flex-direction: column;
+    outline: 1px solid rgb(255, 255, 255, 50%);
+    padding: 2%;
+    border-radius: 50px;
 }
 
 .display{
@@ -23,6 +26,8 @@ body{
     border-style: none;
     background-color: rgba(41, 46, 48, 0.5); 
     cursor: pointer;
+    font-family: 'Roboto Slab';
+    font-size: larger;
     
     &:hover{
     background-color: rgba(41, 46, 48, 0.7); 
@@ -51,6 +56,8 @@ body{
     cursor: pointer;
     background-color: rgba(41, 46, 48, 0.5);
     color: rgb(255, 255, 255);
+    font-family: 'Roboto Slab';
+    font-size: larger;
 }
 
 .equal, .dot{
