@@ -59,35 +59,33 @@ buttonsAll.forEach((buttons)=>{
 document.addEventListener('keydown', (event)=>{
     let keyValue=event.key;
     console.log(keyValue);
-    // let currentButton = [...buttonsAll].filter(buttons=>buttons.innerHTML==keyValue);
-    // if(currentButton.length!==0){
-    //     if(currentButton[0].innerHTML.match(/^\+|\-|\*|\/|\=$/g) && currentButton[0].innerHTML!='+/-'){
-    //         if(negCount!='0'){
-    //             console.log('yes');
-    //             negCount.classList.remove('present');
-    //         }
-    //         negCount=currentButton[0];
-    //         negCount.classList.add('present');
-    //     }
-    //     else if(negCount==0){
-    //         console.log('Go on');
-    //     }
-    //     else{
-    //         negCount.classList.remove('present');
-    //     }
-    // }
-    // console.log(keyValue);
+    if(keyValue=='Enter'){keyValue='='};
+    if(keyValue=='*'){keyValue='x'};
+    if(keyValue=='Escape'){keyValue='AC'};
+    let currentButton = [...buttonsAll].filter(buttons=>buttons.innerHTML==keyValue);
+    if(currentButton.length!==0){
+        if(currentButton[0].innerHTML.match(/^\+|\-|\x|\/|\=$/g) && currentButton[0].innerHTML!='+/-'){
+            if(negCount!='0'){
+                console.log(negCount);
+                console.log('yes');
+                negCount.classList.remove('present');
+            }
+            negCount=currentButton[0];
+            negCount.classList.add('present');
+        }
+        else if(negCount==0){
+            console.log('Go on');
+        }
+        else{
+            negCount.classList.remove('present');
+        }
+    }
+    console.log(keyValue);
 
-    if(keyValue=='*'){
-        calculation('x');
+    if(keyValue=='AC'){
+        calculation(keyValue);
     }
-    else if(keyValue=='Escape'){
-        calculation('AC');
-    }
-    else if(keyValue=='Enter'){
-        calculation('=');
-    }
-    else if(keyValue.match(/^\+|\-|\/|\%|\.$/g)){
+    else if(keyValue.match(/^\+|\-|\/|\x|\%|\.|\=$/g)){
         calculation(keyValue);
     }
     else if(keyValue.match(/^\d$/g)){
