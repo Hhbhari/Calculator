@@ -3,6 +3,7 @@ let count = 0,
   negCount = 0,
   result = 0;
 
+//stack to store store values
 class Stack {
   constructor() {
     this.items = [];
@@ -33,12 +34,14 @@ class Stack {
   }
 }
 
-let stack = new Stack();
+let stack = new Stack(); //stack instance
 
 const buttonsAll = document.querySelectorAll("button");
 
+//button event listener
 buttonsAll.forEach((buttons) => {
   buttons.addEventListener("click", () => {
+    //change operator style on button event
     if (
       buttons.innerHTML.match(/^\+|\-|\x|\/|\=$/g) &&
       buttons.innerHTML != "+/-"
@@ -53,10 +56,12 @@ buttonsAll.forEach((buttons) => {
     } else {
       negCount.classList.remove("present");
     }
+    //pass input to calulate result
     calculation(buttons.innerHTML);
   });
 });
 
+//key event listener
 document.addEventListener(
   "keydown",
   (event) => {
@@ -70,9 +75,11 @@ document.addEventListener(
     if (keyValue == "Escape") {
       keyValue = "AC";
     }
+    //match key event with button event
     let currentButton = [...buttonsAll].filter(
       (buttons) => buttons.innerHTML == keyValue,
     );
+    //change operator style on key event
     if (currentButton.length !== 0) {
       if (
         currentButton[0].innerHTML.match(/^\+|\-|\x|\/|\=$/g) &&
@@ -90,6 +97,7 @@ document.addEventListener(
       }
     }
 
+    //pass input to calulate result
     if (keyValue == "AC") {
       calculation(keyValue);
     } else if (keyValue.match(/^\+|\-|\/|\x|\%|\.|\=$/g)) {
