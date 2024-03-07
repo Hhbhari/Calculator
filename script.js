@@ -1,5 +1,5 @@
 const value = document.querySelector('.display');
-let count=0, dotCount=0, negCount=0, result=0;
+let count=0, negCount=0, result=0;
 
 class Stack{
     constructor(){
@@ -40,14 +40,13 @@ buttonsAll.forEach((buttons)=>{
     buttons.addEventListener('click',()=>{
         if(buttons.innerHTML.match(/^\+|\-|\x|\/|\=$/g) && buttons.innerHTML!='+/-'){
             if(negCount!='0'){
-                console.log('yes');
                 negCount.classList.remove('present');
             }
             negCount=buttons;
             negCount.classList.add('present');
         }
         else if(negCount==0){
-            console.log('Go on');
+            console.log('NaN');
         }
         else{
             negCount.classList.remove('present');
@@ -58,7 +57,6 @@ buttonsAll.forEach((buttons)=>{
 
 document.addEventListener('keydown', (event)=>{
     let keyValue=event.key;
-    console.log(keyValue);
     if(keyValue=='Enter'){keyValue='='};
     if(keyValue=='*'){keyValue='x'};
     if(keyValue=='Escape'){keyValue='AC'};
@@ -66,21 +64,18 @@ document.addEventListener('keydown', (event)=>{
     if(currentButton.length!==0){
         if(currentButton[0].innerHTML.match(/^\+|\-|\x|\/|\=$/g) && currentButton[0].innerHTML!='+/-'){
             if(negCount!='0'){
-                console.log(negCount);
-                console.log('yes');
                 negCount.classList.remove('present');
             }
             negCount=currentButton[0];
             negCount.classList.add('present');
         }
         else if(negCount==0){
-            console.log('Go on');
+            console.log('NaN');
         }
         else{
             negCount.classList.remove('present');
         }
     }
-    console.log(keyValue);
 
     if(keyValue=='AC'){
         calculation(keyValue);
@@ -92,7 +87,6 @@ document.addEventListener('keydown', (event)=>{
         calculation(keyValue);
     }
     else if(keyValue=='Backspace'){
-        console.log(value.innerHTML.length);
         value.innerHTML = value.innerHTML.length==1? '0' : value.innerHTML.split('').slice(0,value.innerHTML.length-1).join('');
     }
     else{
@@ -104,7 +98,6 @@ function calculation(selection){
     if (selection=='AC'){
         value.innerHTML='0';
         count=0;
-        dotCount=0;
         negCount=0;
         stack.clear();
     }
@@ -124,7 +117,7 @@ function calculation(selection){
         }
     }
     else if(selection=='+/-'){
-        value.innerHTML=='0' ? console.log('lol') : value.innerHTML<0 ? console.log('Nope') : value.innerHTML=`${'-'}${value.innerHTML}`;
+        value.innerHTML=='0' ? console.log('ERROR') : value.innerHTML<0 ? console.log('ERROR') : value.innerHTML=`${'-'}${value.innerHTML}`;
     }
     else if(selection=='%'){
         if(stack.size()==0 || stack.size()==1 || stack.peek()=='='){
@@ -144,44 +137,37 @@ function calculation(selection){
             stack.add(value.innerHTML);
             stack.add(selection);
             count=0;
-            console.log(stack.items);
 
         }
         else if(stack.peek().match(/^\+|\-|\x|\/|\=$/g) && count==0){
             stack.pop();
             stack.add(selection);
-            console.log(stack.items);
 
         }
         else{
             switch(stack.peek()) {
                 case '+':
                     addition(selection);
-                    console.log('add');
                     break;
                 case '-':
                     sub(selection);
-                    console.log('sub');
                     break;
                 case 'x':
                     multiply(selection);
-                    console.log('multiply');
                     break;
                 case '/':
                     division(selection);
-                    console.log('multiply');
                     break;
                 case '=':
                     equal(selection);
-                    console.log('equal');
                     break;
-                // default:
-                //     console.log('check');
+                default:
+                    console.log('ERROR');
             }
         }
     }
     else{
-        value.innerHTML='NaN'
+        value.innerHTML='ERROR'
     }
 }
 
@@ -192,8 +178,6 @@ function addition(selection){
     stack.add(selection);
     value.innerHTML= result;
     count=0;
-    console.log(result);
-    console.log(stack.items);
 }
 
 function sub(selection){
@@ -203,8 +187,6 @@ function sub(selection){
     stack.add(selection);
     value.innerHTML= result;
     count=0;
-    console.log(result);
-    console.log(stack.items);
 }
 
 function multiply(selection){
@@ -214,8 +196,6 @@ function multiply(selection){
     stack.add(selection);
     value.innerHTML= result;
     count=0;
-    console.log(result);
-    console.log(stack.items);
 }
 
 function division(selection){
@@ -228,8 +208,6 @@ function division(selection){
     stack.add(selection);
     value.innerHTML= result;
     count=0;
-    console.log(result);
-    console.log(stack.items);
 }
 
 function equal(selection){
@@ -238,6 +216,5 @@ function equal(selection){
         stack.pop()
         stack.add(selection);
         count=0;
-        console.log(stack.items);
     }
 }
