@@ -56,7 +56,7 @@ buttonsAll.forEach((buttons) => {
     } else {
       negCount.classList.remove("present");
     }
-    //pass input to calulate result
+    //pass input to calculate result
     calculation(buttons.innerHTML);
   });
 });
@@ -97,7 +97,7 @@ document.addEventListener(
       }
     }
 
-    //pass input to calulate result
+    //pass input to calculate result
     if (keyValue == "AC") {
       calculation(keyValue);
     } else if (keyValue.match(/^\+|\-|\/|\x|\%|\.|\=$/g)) {
